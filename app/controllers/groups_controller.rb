@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
-   before_action :authenticate_user! , only: [:new, :create,:edit,:update,:destoy]
-      before_action :find_group_and_check_permission , only: [:new, :edit,:update,:destoy]
+   before_action :authenticate_user! , only: [:new, :create, :edit, :update, :destoy]
+      before_action :find_group_and_check_permission , only: [:edit, :update, :destoy]
   def index
     @groups = Group.all
   end
@@ -46,6 +46,7 @@ class GroupsController < ApplicationController
       redirect_to root_path, alert: "You have no permission."
     end
   end
+
  def group_params
    params.require(:group).permit(:title, :description)
  end
